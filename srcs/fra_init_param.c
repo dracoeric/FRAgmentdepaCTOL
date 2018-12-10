@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:40:48 by erli              #+#    #+#             */
-/*   Updated: 2018/12/10 11:47:15 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/10 15:37:52 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,14 @@ int				fra_init_2(t_fra_param *param, enum e_fra_type type)
 	param->zoom = 1;
 	param->qx = (long double)DEFAULT_X_AMPLITUDE / (long double)IMG_HEIGHT;
 	param->qy = (long double)DEFAULT_X_AMPLITUDE;
-	param->c_re = 0;
-	param->c_im = 0;
+	param->zoom_incr = (long double)(ZOOM_INCR - 1) / (long double)ZOOM_INCR;
+	param->zoom_decr = (long double)(1 - ZOOM_INCR);
+	param->o_re = 0;
+	param->o_im = 0;
+	param->c_re = -0.5;
+	param->c_im = 0.5;
+	param->cg = &fra_cg_bw;
+	fra_draw(param);
 	return (0);
 }
 

@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fra_key_press.c                                    :+:      :+:    :+:   */
+/*   fra_draw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/07 11:44:00 by erli              #+#    #+#             */
-/*   Updated: 2018/12/10 15:45:44 by erli             ###   ########.fr       */
+/*   Created: 2018/12/10 15:20:25 by erli              #+#    #+#             */
+/*   Updated: 2018/12/10 15:38:50 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdlib.h>
+#include "libft.h"
 
-int		fra_key_press(int key, void *param)
+void	fra_draw(t_fra_param *param)
 {
-	t_fra_param *para;
+	int	x;
+	int	y;
 
-	para = (t_fra_param *)param;
-	if (key == 256)
-		para->key_pressed = 1;
-	if (key == 53)
+	ft_bzero(param->img->str, param->img->size_line * param->img->nb_line + 1);
+	y = 0;
+	while (y < IMG_HEIGHT)
 	{
-		fra_free_param(&para, 0, 112);
-		exit(0);
+		x = 0;
+		while (x < IMG_WIDTH)
+		{
+			mlx_pixel_put_img(param->img, x, y,
+				param->cg(param, fra_iter_julia(param, x, y)));
+			x++;
+		}
+		y++;
 	}
-	return (0);
+	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img->ptr, 0, 0);
 }

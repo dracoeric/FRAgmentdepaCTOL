@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 09:53:53 by erli              #+#    #+#             */
-/*   Updated: 2018/12/10 12:07:58 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/10 15:33:45 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 # define WIN_STAT_WIDTH 300
 # define WIN_STAT_HEIGHT 720
 # define WIN_STAT_TEXT_COLOUR "0x00ffffff"
-# define DEFAULT_NUM_MAX_ITER 50
+# define DEFAULT_NUM_MAX_ITER 5
 # define DEFAULT_X_AMPLITUDE 3
-# define MAX_ZOOM 65536
+# define MAX_ZOOM 655360000
+# define ZOOM_INCR 1.10
 
 enum	e_fra_type
 {
@@ -42,12 +43,16 @@ typedef	struct	s_fra_param
 	t_pixcoord		*pointer;
 	enum e_fra_type	type;	
 	int				num_max_iter;
-	int				zoom;
+	long double		zoom;
+	long double		zoom_incr;
+	long double		zoom_decr;
+	long double		o_re;
+	long double		o_im;
 	long double		qx;
 	long double		qy;
 	long double		c_re;
 	long double		c_im;
-	t_colour		(*cg)(int n);
+	t_colour		(*cg)(struct s_fra_param *, int n);
 }				t_fra_param;
 
 int				fra_close(void *param);
@@ -61,5 +66,8 @@ void			fra_print_stat(t_fra_param *param);
 enum e_fra_type	fra_type(char *str);
 long double		fra_pix_to_re(t_fra_param *param, int px);
 long double		fra_pix_to_im(t_fra_param *param, int py);
+t_colour		fra_cg_bw(t_fra_param *param, int n);
+int				fra_iter_julia(t_fra_param *param, int x, int y);
+void			fra_draw(t_fra_param *param);
 
 #endif

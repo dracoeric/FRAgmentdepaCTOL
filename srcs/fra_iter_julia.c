@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fra_key_press.c                                    :+:      :+:    :+:   */
+/*   fra_iter_julia.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/07 11:44:00 by erli              #+#    #+#             */
-/*   Updated: 2018/12/10 15:45:44 by erli             ###   ########.fr       */
+/*   Created: 2018/12/10 15:07:07 by erli              #+#    #+#             */
+/*   Updated: 2018/12/10 15:39:56 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdlib.h>
 
-int		fra_key_press(int key, void *param)
+int		fra_iter_julia(t_fra_param *param, int x, int y)
 {
-	t_fra_param *para;
+	long double	im;
+	long double	re;
+	long double re2;
+	long double	im2;
+	int			i;
 
-	para = (t_fra_param *)param;
-	if (key == 256)
-		para->key_pressed = 1;
-	if (key == 53)
+	i = 0;
+	im = fra_pix_to_im(param, y);
+	re = fra_pix_to_re(param, x);
+	im2 = 0;
+	re2 = 0;
+	while (i <= param->num_max_iter && re2 + im2 < 4.0)
 	{
-		fra_free_param(&para, 0, 112);
-		exit(0);
+		re2 = re * re;
+		im2 = im * im;
+		im = 2 * re * im + param->c_im;
+		re = re2 - im2 + param->c_re;
+		i++;
 	}
-	return (0);
+	return (i);
 }
