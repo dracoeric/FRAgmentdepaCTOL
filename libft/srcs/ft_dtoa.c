@@ -6,55 +6,84 @@
 /*   By: erli <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 14:19:28 by erli              #+#    #+#             */
-/*   Updated: 2018/12/07 17:10:53 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/10 10:54:15 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <string.h>
 
-static	int		max_power(double nb, double *pow)
+static	int		max_power(double nb, double *pow, int precision)
 {
-	int n_pow;
+	int len;
 
-	n_pow = 0;
+	len = 0;
 	if (nb < 0)
+	{
 		*pow = -1;
+		len++;
+	}
 	if (nb == -2147483648)
 	{
 		*pow *= 10;
-		n_pow++;
+		len++;
 	}
 	while (nb / *pow >= 10)
 	{
 		*pow *= 10;
-		n_pow++;
+		len++;
 	}
-	return (n_pow);
+	if (precision == 0)
+		return (len);
+	else
+		return (len + 1 + precision);
 }
 
-char			*ft_dtoa(double nb)
+static	void	fill_decimals(double nb, char *str, int i, int precision)
 {
-	double	pow;
-	int		i;
-	char	*str;
+	int pow;
+
+	if (precision != 0)
+	{
+		pow = (nb < 0 ? -10 : 10);
+		str[i] = '.';
+		i++;
+		nb = nb - (int)nb;
+		while (precision > 0)
+		{
+			str[i] = (int)(nb * pow) + 48;
+			nb = (10 * nb) - (pow / 10) * (int)(str[i] - 48);
+			i++;
+			precision--;
+		}
+	}
+	str[i] = '\0';
+}
+
+char			*ft_dtoa(double nb, int precision)
+{
+	double		pow;
+	int			i;
+	int			len;
+	char		*str;
 
 	pow = 1;
 	i = 0;
-	if (!(str = (char *)malloc(sizeof(char) * (max_power(nb, &pow) + 2))))
+	len = max_power(nb, &pow, precision);
+	if (!(str = (char *)malloc(sizeof(char) * len + 1)))
 		return (NULL);
 	if (nb < 0)
 	{
 		str[0] = '-';
 		i++;
 	}
-	while (pow != 0)
+	while (pow >= 1 || pow <= -1)
 	{
 		str[i] = (int)(nb / pow) + 48;
-		nb = (nb - (str[i] - 48)) * 10;
+		nb = (nb - (str[i] - 48)) / 10;
 		pow /= 10;
 		i++;
 	}
-	str[i] = '\0';
+	fill_decimals(nb, str, i, precision);
 	return (str);
 }

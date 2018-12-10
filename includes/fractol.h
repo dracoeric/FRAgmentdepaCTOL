@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 09:53:53 by erli              #+#    #+#             */
-/*   Updated: 2018/12/07 17:05:22 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/10 12:07:58 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 # define WIN_STAT_HEIGHT 720
 # define WIN_STAT_TEXT_COLOUR "0x00ffffff"
 # define DEFAULT_NUM_MAX_ITER 50
-# define DEFAULT_X_AMPLITUDE 6
+# define DEFAULT_X_AMPLITUDE 3
+# define MAX_ZOOM 65536
+
 enum	e_fra_type
 {
 	NOT_SUPPORTED = -1,
@@ -41,8 +43,11 @@ typedef	struct	s_fra_param
 	enum e_fra_type	type;	
 	int				num_max_iter;
 	int				zoom;
+	long double		qx;
+	long double		qy;
 	long double		c_re;
 	long double		c_im;
+	t_colour		(*cg)(int n);
 }				t_fra_param;
 
 int				fra_close(void *param);
@@ -54,7 +59,7 @@ int				fra_mouse_move(int x, int y, void *param);
 int				fra_mouse_press(int button, int x, int y, void *param);
 void			fra_print_stat(t_fra_param *param);
 enum e_fra_type	fra_type(char *str);
-long double		fra_pix_to_re(t_fra_param *param, t_pixcoord *pix);
-long double		fra_pix_to_im(t_fra_param *param, t_pixcoord *pix);
+long double		fra_pix_to_re(t_fra_param *param, int px);
+long double		fra_pix_to_im(t_fra_param *param, int py);
 
 #endif

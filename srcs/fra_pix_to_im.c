@@ -6,17 +6,18 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 16:52:15 by erli              #+#    #+#             */
-/*   Updated: 2018/12/07 17:07:59 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/10 11:51:32 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include "libft.h"
 
-long double		fra_pix_to_im(t_fra_param *param, t_pixcoord *pix)
+long double		fra_pix_to_im(t_fra_param *param, int py)
 {
 	long double ima;
 
-	ima = (long double)pix->px * (long double)(DEFAULT_X_AMPLITUDE)
-		/ (param->zoom * IMG_HEIGHT);
+	ima = ((long double)py * 2 / (long double)IMG_HEIGHT - 1) * param->qy
+		+ param->c_im;
 	return (ima);
 }
