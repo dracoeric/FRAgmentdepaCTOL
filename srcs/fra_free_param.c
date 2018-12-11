@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:59:21 by erli              #+#    #+#             */
-/*   Updated: 2018/12/07 16:26:35 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/11 12:22:00 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ int		fra_free_param(t_fra_param **param, int cas, int setting)
 	}
 	if (setting / 100 == 1)
 		free((*param)->pointer);
+	if (setting / 1000 == 1)
+		free((*param)->grad);
+	if (setting / 1000 == 1)
+		free((*param)->mutex);
 	free(*param);
 	*param = 0;
 	if (cas == -1)

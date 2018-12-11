@@ -6,13 +6,24 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:40:48 by erli              #+#    #+#             */
-/*   Updated: 2018/12/10 15:37:52 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/11 13:04:31 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
 #include <stdlib.h>
+
+int				fra_init_3(t_fra_param *param)
+{
+	if (!(param->mutex = (t_mutex *)malloc(sizeof(t_mutex))))
+		return (fra_free_param(&param, -1, 1112));
+	param->mutex->px = 0;
+	param->mutex->py = 0;
+	param->mutex->mutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
+	fra_draw(param);
+	return (0);	
+}
 
 int				fra_init_2(t_fra_param *param, enum e_fra_type type)
 {
@@ -34,8 +45,10 @@ int				fra_init_2(t_fra_param *param, enum e_fra_type type)
 	param->o_im = 0;
 	param->c_re = -0.5;
 	param->c_im = 0.5;
-	param->cg = &fra_cg_bw;
-	fra_draw(param);
+	param->cg = &fra_cg_grad;
+	if (!(param->grad = fra_make_grad_1()))
+		return (fra_free_param(&param, -1, 112));
+	fra_init_3(param);
 	return (0);
 }
 

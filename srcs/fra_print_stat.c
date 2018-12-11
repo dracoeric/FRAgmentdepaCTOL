@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 16:10:00 by erli              #+#    #+#             */
-/*   Updated: 2018/12/10 14:46:39 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/11 09:37:16 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ static	void	print_coord2(t_fra_param *param, int precision)
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 105,
 		param->stat_colour, "center y:");
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 105,
+		param->stat_colour, str);
+	free(str);
+	str = ft_itoa(param->num_max_iter);
+	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 125,
+		param->stat_colour, "n iteration:");
+	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 130, 125,
 		param->stat_colour, str);
 	free(str);
 }

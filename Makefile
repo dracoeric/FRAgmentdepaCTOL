@@ -6,7 +6,7 @@
 #    By: erli <erli@42.fr>                          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/30 10:43:47 by erli              #+#    #+#              #
-#    Updated: 2018/12/10 15:34:34 by erli             ###   ########.fr        #
+#    Updated: 2018/12/11 12:22:35 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -24,7 +24,8 @@ SRCS			=	mlx_line_put.c		mlx_str_to_colour.c							\
 					fra_key_press.c		fra_key_release.c	fra_mouse_move.c		\
 					fra_mouse_press.c	fra_type.c			fra_print_stat.c		\
 					fra_pix_to_re.c		fra_pix_to_im.c		fra_iter_julia.c		\
-					fra_cg_bw.c			fra_draw.c			main.c				
+					fra_cg_bw.c			fra_cg_grad.c		fra_draw.c				\
+					fra_make_grad_1.c						main.c				
 
 OBJS			=	$(addprefix $(OBJSDIR)/,$(SRCS:.c=.o))
 
@@ -36,7 +37,7 @@ RM				=	rm -f
 
 INCL			=	-I includes/ -I libft/includes -I minilibx_macos/
 
-LIB				=	-Lminilibx_macos/ -lmlx -Llibft/ -lft
+LIB				=	-Lminilibx_macos/ -lmlx -Llibft/ -lft -lpthread
 
 FRAMEWORK		=	-framework OpenGL -framework AppKit
 

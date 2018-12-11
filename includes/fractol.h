@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 09:53:53 by erli              #+#    #+#             */
-/*   Updated: 2018/12/10 15:33:45 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/11 12:21:36 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FRACTOL_H
 
 #include "mlxadd.h"
+#include <pthread.h>
 
 # define IMG_WIDTH 1080
 # define IMG_HEIGHT 720
@@ -31,6 +32,13 @@ enum	e_fra_type
 	JULIA = 0,
 	MANDELBROT = 1
 };
+
+typedef	struct	s_mutex
+{
+	int		px;
+	int		py;
+	pthread_mutex_t mutex;
+}				t_mutex;
 
 typedef	struct	s_fra_param
 {
@@ -52,8 +60,12 @@ typedef	struct	s_fra_param
 	long double		qy;
 	long double		c_re;
 	long double		c_im;
+	t_colour		*grad;
 	t_colour		(*cg)(struct s_fra_param *, int n);
+	t_mutex			*mutex;
 }				t_fra_param;
+
+
 
 int				fra_close(void *param);
 int				fra_free_param(t_fra_param **param, int cas, int settings);
@@ -66,7 +78,9 @@ void			fra_print_stat(t_fra_param *param);
 enum e_fra_type	fra_type(char *str);
 long double		fra_pix_to_re(t_fra_param *param, int px);
 long double		fra_pix_to_im(t_fra_param *param, int py);
+t_colour		*fra_make_grad_1(void);
 t_colour		fra_cg_bw(t_fra_param *param, int n);
+t_colour		fra_cg_grad(t_fra_param *param, int n);
 int				fra_iter_julia(t_fra_param *param, int x, int y);
 void			fra_draw(t_fra_param *param);
 
