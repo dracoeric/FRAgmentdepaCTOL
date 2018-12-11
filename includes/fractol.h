@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 09:53:53 by erli              #+#    #+#             */
-/*   Updated: 2018/12/11 16:24:21 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/11 16:54:37 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define DEFAULT_X_AMPLITUDE 3
 # define MAX_ZOOM 655360000
 # define ZOOM_INCR 1.10
+# define NUM_MAX_THREAD 2
 
 enum	e_fra_type
 {
@@ -55,12 +56,8 @@ typedef	struct	s_fra_param
 	long double		c_im;
 	t_colour		*grad;
 	t_colour		(*cg)(struct s_fra_param *, int n);
-	double			p1;
-	double			p2;
-	double			p3;
-	double			p4;
-	double			p5;
-	int				count;
+	double			count;
+	int				n_thread;
 }				t_fra_param;
 
 
@@ -80,11 +77,6 @@ t_colour		*fra_make_grad_1(void);
 t_colour		fra_cg_bw(t_fra_param *param, int n);
 t_colour		fra_cg_grad(t_fra_param *param, int n);
 int				fra_iter_julia(t_fra_param *param, int x, int y);
-void			*fra_draw1(void *arg);
-void			*fra_draw2(void *arg);
-void			*fra_draw3(void *arg);
-void			*fra_draw4(void *arg);
-void			*fra_draw5(void *arg);
 void			fra_draw(t_fra_param *param);
 
 #endif

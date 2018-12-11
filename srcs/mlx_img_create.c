@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 10:02:38 by erli              #+#    #+#             */
-/*   Updated: 2018/12/01 11:14:13 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/11 16:35:19 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ t_img	*mlx_img_create(void *mlx_ptr, int width, int height)
 	img->endian = 0;
 	img->str = mlx_get_data_addr(img->ptr, &(img->bpp), &(img->size_line),
 					&(img->endian));
-	ft_bzero(img->str, (img->size_line * height) + 1);
+	ft_bzero(img->str, (img->size_line * height));
 	return (img);
 }

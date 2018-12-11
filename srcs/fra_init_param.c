@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:40:48 by erli              #+#    #+#             */
-/*   Updated: 2018/12/11 16:23:08 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/11 16:52:01 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,15 @@
 #include "libft.h"
 #include <stdlib.h>
 
-int				fra_init_3(t_fra_param *param)
+static	int		fra_init_3(t_fra_param *param)
 {
-	param->p1 = 0;
-	param->p2 = 0;
-	param->p3 = 0;
-	param->p4 = 0;
-	param->p5 = 0;
 	param->count = 0;
+	param->n_thread = 0;
 	fra_draw(param);
 	return (0);	
 }
 
-int				fra_init_2(t_fra_param *param, enum e_fra_type type)
+static	int		fra_init_2(t_fra_param *param, enum e_fra_type type)
 {
 	if (!(param->pointer = (t_pixcoord *)malloc(sizeof(t_pixcoord))))
 		return (fra_free_param(&param, -1, 12));

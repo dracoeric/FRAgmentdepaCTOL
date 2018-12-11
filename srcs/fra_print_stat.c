@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 16:10:00 by erli              #+#    #+#             */
-/*   Updated: 2018/12/11 15:46:39 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/11 16:44:38 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,7 @@ static	void	print_thread_perf(t_fra_param *param, int pre)
 {
 	char	*str;
 
-	str = ft_dtoa((double)param->p2 / (double)(IMG_WIDTH * IMG_HEIGHT), pre);
-	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 165,
-		param->stat_colour, "p2:");
-	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 165,
-		param->stat_colour, str);
-	free(str);
-	str = ft_dtoa((double)param->p3 / (double)(IMG_WIDTH * IMG_HEIGHT), pre);
-	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 185,
-		param->stat_colour, "p3:");
-	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 185,
-		param->stat_colour, str);
-	free(str);
-	str = ft_dtoa((double)param->p4 / (double)(IMG_WIDTH * IMG_HEIGHT), pre);
-	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 205,
-		param->stat_colour, "p4:");
-	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 205,
-		param->stat_colour, str);
-	free(str);
-	str = ft_dtoa((double)param->p5 / (double)(IMG_WIDTH * IMG_HEIGHT), pre);
-	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 225,
-		param->stat_colour, "p5:");
-	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 225,
-		param->stat_colour, str);
-	free(str);
-	str = ft_itoa(param->count);
+	str = ft_dtoa(param->count, pre);
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 245,
 		param->stat_colour, "count");
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 245,
@@ -64,12 +40,6 @@ static	void	print_coord2(t_fra_param *param, int pre)
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 125,
 		param->stat_colour, "n iteration:");
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 130, 125,
-		param->stat_colour, str);
-	free(str);
-	str = ft_dtoa((double)param->p1 / (double)(IMG_WIDTH * IMG_HEIGHT), 2);
-	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 145,
-		param->stat_colour, "p1:");
-	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 145,
 		param->stat_colour, str);
 	free(str);
 	print_thread_perf(param, 2);
