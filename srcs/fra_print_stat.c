@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 16:10:00 by erli              #+#    #+#             */
-/*   Updated: 2018/12/11 09:37:16 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/11 15:46:39 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,47 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static	void	print_coord2(t_fra_param *param, int precision)
+static	void	print_thread_perf(t_fra_param *param, int pre)
+{
+	char	*str;
+
+	str = ft_dtoa((double)param->p2 / (double)(IMG_WIDTH * IMG_HEIGHT), pre);
+	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 165,
+		param->stat_colour, "p2:");
+	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 165,
+		param->stat_colour, str);
+	free(str);
+	str = ft_dtoa((double)param->p3 / (double)(IMG_WIDTH * IMG_HEIGHT), pre);
+	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 185,
+		param->stat_colour, "p3:");
+	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 185,
+		param->stat_colour, str);
+	free(str);
+	str = ft_dtoa((double)param->p4 / (double)(IMG_WIDTH * IMG_HEIGHT), pre);
+	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 205,
+		param->stat_colour, "p4:");
+	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 205,
+		param->stat_colour, str);
+	free(str);
+	str = ft_dtoa((double)param->p5 / (double)(IMG_WIDTH * IMG_HEIGHT), pre);
+	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 225,
+		param->stat_colour, "p5:");
+	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 225,
+		param->stat_colour, str);
+	free(str);
+	str = ft_itoa(param->count);
+	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 245,
+		param->stat_colour, "count");
+	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 245,
+		param->stat_colour, str);
+	free(str);
+}
+
+static	void	print_coord2(t_fra_param *param, int pre)
 {
 	char *str;
 
-	str = ft_ldtoa(param->c_im, precision);
+	str = ft_ldtoa(param->c_im, pre);
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 105,
 		param->stat_colour, "center y:");
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 105,
@@ -30,6 +66,13 @@ static	void	print_coord2(t_fra_param *param, int precision)
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 130, 125,
 		param->stat_colour, str);
 	free(str);
+	str = ft_dtoa((double)param->p1 / (double)(IMG_WIDTH * IMG_HEIGHT), 2);
+	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 145,
+		param->stat_colour, "p1:");
+	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 145,
+		param->stat_colour, str);
+	free(str);
+	print_thread_perf(param, 2);
 }
 
 static	void	print_coord(t_fra_param *param, int precision)

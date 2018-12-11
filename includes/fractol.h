@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 09:53:53 by erli              #+#    #+#             */
-/*   Updated: 2018/12/11 12:21:36 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/11 16:24:21 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 #include "mlxadd.h"
 #include <pthread.h>
 
-# define IMG_WIDTH 1080
-# define IMG_HEIGHT 720
+# define IMG_WIDTH 512
+# define IMG_HEIGHT 512
 # define WIN_STAT_WIDTH 300
 # define WIN_STAT_HEIGHT 720
 # define WIN_STAT_TEXT_COLOUR "0x00ffffff"
-# define DEFAULT_NUM_MAX_ITER 5
+# define DEFAULT_NUM_MAX_ITER 50
 # define DEFAULT_X_AMPLITUDE 3
 # define MAX_ZOOM 655360000
 # define ZOOM_INCR 1.10
@@ -32,13 +32,6 @@ enum	e_fra_type
 	JULIA = 0,
 	MANDELBROT = 1
 };
-
-typedef	struct	s_mutex
-{
-	int		px;
-	int		py;
-	pthread_mutex_t mutex;
-}				t_mutex;
 
 typedef	struct	s_fra_param
 {
@@ -62,7 +55,12 @@ typedef	struct	s_fra_param
 	long double		c_im;
 	t_colour		*grad;
 	t_colour		(*cg)(struct s_fra_param *, int n);
-	t_mutex			*mutex;
+	double			p1;
+	double			p2;
+	double			p3;
+	double			p4;
+	double			p5;
+	int				count;
 }				t_fra_param;
 
 
@@ -82,6 +80,11 @@ t_colour		*fra_make_grad_1(void);
 t_colour		fra_cg_bw(t_fra_param *param, int n);
 t_colour		fra_cg_grad(t_fra_param *param, int n);
 int				fra_iter_julia(t_fra_param *param, int x, int y);
+void			*fra_draw1(void *arg);
+void			*fra_draw2(void *arg);
+void			*fra_draw3(void *arg);
+void			*fra_draw4(void *arg);
+void			*fra_draw5(void *arg);
 void			fra_draw(t_fra_param *param);
 
 #endif

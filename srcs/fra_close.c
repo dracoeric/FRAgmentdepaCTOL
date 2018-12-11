@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 10:50:30 by erli              #+#    #+#             */
-/*   Updated: 2018/12/11 12:01:22 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/11 15:47:10 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int	fra_close(void *param)
 	t_fra_param	*para;
 
 	para = (t_fra_param *)param;
-	fra_free_param(&para, 0, 11112);
+	fra_free_param(&para, 0, 1112);
 	exit(0);
 }

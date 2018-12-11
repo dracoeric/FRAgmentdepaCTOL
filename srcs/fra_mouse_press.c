@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:37:25 by erli              #+#    #+#             */
-/*   Updated: 2018/12/11 09:08:22 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/11 16:05:11 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,15 @@ static	void	manage_iter(int button, int x, int y, t_fra_param *param)
 	ft_printf("Button %d pressed at (%d, %d).\n", button, x, y);
 	if (button == 4 && param->key_pressed == 1)
 	{
-		param->num_max_iter += 10;
+		param->num_max_iter += 2;
 		fra_draw(param);
 	}
 	if (button == 5 && param->key_pressed == 1)
 	{
 		if (param->num_max_iter > DEFAULT_NUM_MAX_ITER)
-			param->num_max_iter -= 10;
+			param->num_max_iter -= 2;
 		else
 			param ->num_max_iter = DEFAULT_NUM_MAX_ITER;
-	}
-	if (button == 15)
-	{
-		param->qx = (long double)DEFAULT_X_AMPLITUDE
-			/ (long double)IMG_HEIGHT;
-		param->qy = (long double)DEFAULT_X_AMPLITUDE;
-		param->zoom = 1;
-		param->o_re = 0;
-		param->o_im = 0;
-		param->num_max_iter = DEFAULT_NUM_MAX_ITER;
 	}
 }
 
@@ -80,7 +70,7 @@ int				fra_mouse_press(int button, int x, int y, void *param)
 		fra_pix_to_re(para, x), fra_pix_to_im(para, y));
 	manage_zoom(button, x, y, para);
 	manage_iter(button, x, y, para);
-	if (button == 4 || button == 5 || button == 15)
+	if (button == 4 || button == 5)
 		fra_draw(para);
 	fra_print_stat(para);
 	return (0);

@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fra_pix_to_im.c                                    :+:      :+:    :+:   */
+/*   fra_draw1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/07 16:52:15 by erli              #+#    #+#             */
-/*   Updated: 2018/12/11 16:01:21 by erli             ###   ########.fr       */
+/*   Created: 2018/12/11 15:06:02 by erli              #+#    #+#             */
+/*   Updated: 2018/12/11 16:12:36 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"
 
-long double		fra_pix_to_im(t_fra_param *param, int py)
+void	*fra_draw3(void *arg)
 {
-	long double ima;
+	int			x;
+	int			y;
+	t_fra_param	*param;
 
-	ima = ((long double)py * 2 / (long double)IMG_HEIGHT - 1) * param->qy
-		+ param->o_im;
-	return (ima);
+	param = (t_fra_param *)arg;
+	y = 0;
+	while ((y < IMG_HEIGHT))
+	{
+		x = 2;
+		while (x < IMG_WIDTH)
+		{
+			mlx_pixel_put_img(param->img, x, y,
+				param->cg(param, fra_iter_julia(param, x, y)));
+			param->p3++;
+			x += 5;
+		}
+		y++;
+	}
+	return (0);
 }

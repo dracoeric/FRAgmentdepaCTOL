@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:40:48 by erli              #+#    #+#             */
-/*   Updated: 2018/12/11 13:04:31 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/11 16:23:08 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 
 int				fra_init_3(t_fra_param *param)
 {
-	if (!(param->mutex = (t_mutex *)malloc(sizeof(t_mutex))))
-		return (fra_free_param(&param, -1, 1112));
-	param->mutex->px = 0;
-	param->mutex->py = 0;
-	param->mutex->mutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
+	param->p1 = 0;
+	param->p2 = 0;
+	param->p3 = 0;
+	param->p4 = 0;
+	param->p5 = 0;
+	param->count = 0;
 	fra_draw(param);
 	return (0);	
 }
@@ -43,7 +44,7 @@ int				fra_init_2(t_fra_param *param, enum e_fra_type type)
 	param->zoom_decr = (long double)(1 - ZOOM_INCR);
 	param->o_re = 0;
 	param->o_im = 0;
-	param->c_re = -0.5;
+	param->c_re = 0.3;
 	param->c_im = 0.5;
 	param->cg = &fra_cg_grad;
 	if (!(param->grad = fra_make_grad_1()))

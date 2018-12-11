@@ -6,7 +6,7 @@
 #    By: erli <erli@42.fr>                          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/30 10:43:47 by erli              #+#    #+#              #
-#    Updated: 2018/12/11 12:22:35 by erli             ###   ########.fr        #
+#    Updated: 2018/12/11 16:00:29 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,7 +25,9 @@ SRCS			=	mlx_line_put.c		mlx_str_to_colour.c							\
 					fra_mouse_press.c	fra_type.c			fra_print_stat.c		\
 					fra_pix_to_re.c		fra_pix_to_im.c		fra_iter_julia.c		\
 					fra_cg_bw.c			fra_cg_grad.c		fra_draw.c				\
-					fra_make_grad_1.c						main.c				
+					fra_make_grad_1.c	fra_draw1.c			fra_draw2.c				\
+					fra_draw3.c			fra_draw4.c			fra_draw5.c				\
+					main.c				
 
 OBJS			=	$(addprefix $(OBJSDIR)/,$(SRCS:.c=.o))
 
@@ -63,6 +65,9 @@ $(LIBMLX)		:
 
 val				:	$(LIBFT) $(LIBMLX) $(OBJS) includes/fractol.h includes/mlxadd.h
 					$(CC) -g $(CFLAGS) $(INCL) $(LIB) -o $(NAME) $(OBJS) $(FRAMEWORK)
+
+fast			:	$(LIBFT) $(LIBMLX) $(OBJS) includes/fractol.h includes/mlxadd.h
+					$(CC) $(CFLAGS) $(INCL) $(LIB) -o $(NAME) $(OBJS) $(FRAMEWORK) -Ofast
 
 clean			:
 					$(RM) $(OBJS)
