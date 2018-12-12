@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:37:25 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 13:42:03 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/12 14:20:56 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static	void	manage_iter(int button, int x, int y, t_fra_param *param)
 		if (param->num_max_iter > DEFAULT_NUM_MAX_ITER)
 			param->num_max_iter -= 20;
 		else
-			param ->num_max_iter = DEFAULT_NUM_MAX_ITER;
+			param->num_max_iter = DEFAULT_NUM_MAX_ITER;
 	}
 }
 

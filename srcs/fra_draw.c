@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 15:20:25 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 14:07:44 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/12 15:06:31 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ static	void	draw(void *arg)
 		while (x < IMG_WIDTH)
 		{
 			fra_pixel_put_img(param->img, x, y,
-				param->cg(param, fra_iter_julia(param, x, y)));
+				param->cg(param, param->iter(param, x, y)));
 			x += NUM_MAX_THREAD;
 		}
 		y++;
 	}
-	(param->thread_time)[x0] = (double)(clock() - t)/CLOCKS_PER_SEC;
+	(param->thread_time)[x0] = (double)(clock() - t) / CLOCKS_PER_SEC;
 }
 
 void			fra_draw(t_fra_param *param)
 {
 	pthread_t	thread[NUM_MAX_THREAD];
-	int 		i;
+	int			i;
 
 	i = 0;
 	param->count = 0;
@@ -65,5 +65,6 @@ void			fra_draw(t_fra_param *param)
 		i++;
 	}
 	param->thread0 = NULL;
-	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img->ptr, 0, 0);
+	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr,
+		param->img->ptr, 0, 0);
 }

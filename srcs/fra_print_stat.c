@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 16:10:00 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 13:38:37 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/12 14:49:33 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static	void	print_thread_perf(t_fra_param *param, int pre)
 	{
 		str = ft_dtoa(param->thread_time[i], 5);
 		mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 165 + i * 20,
-					   param->stat_colour, "time:");
+			param->stat_colour, "time:");
 		mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 165 + i * 20,
-					   param->stat_colour, (!str ? "" : str));
+			param->stat_colour, (!str ? "" : str));
 		free(str);
 		i++;
 	}
@@ -37,9 +37,9 @@ static	void	print_coord2(t_fra_param *param, int pre)
 {
 	char *str;
 
-	str = ft_dtoa(param->o_im, pre);
+	str = ft_dtoa(param->c_im, pre);
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 105,
-		param->stat_colour, "center y:");
+		param->stat_colour, "c_im:");
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 105,
 		param->stat_colour, (!str ? "" : str));
 	free(str);
@@ -69,8 +69,8 @@ static	void	print_coord(t_fra_param *param, int precision)
 		param->stat_colour, (!str ? "" : str));
 	free(str);
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 85,
-		param->stat_colour, "center x:");
-	str = ft_dtoa(param->o_re, precision);
+		param->stat_colour, "c_re:");
+	str = ft_dtoa(param->c_re, precision);
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 85,
 		param->stat_colour, (!str ? "" : str));
 	free(str);
