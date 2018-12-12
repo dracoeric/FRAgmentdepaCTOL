@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 16:10:00 by erli              #+#    #+#             */
-/*   Updated: 2018/12/11 16:44:38 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/12 09:27:47 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,25 @@
 static	void	print_thread_perf(t_fra_param *param, int pre)
 {
 	char	*str;
+	int		i;
 
+	i = 0;
 	str = ft_dtoa(param->count, pre);
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 245,
 		param->stat_colour, "count");
 	mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 245,
 		param->stat_colour, str);
 	free(str);
+	while (i < NUM_MAX_THREAD)
+	{
+		str = ft_dtoa(param->thread_time[i], 5);
+		mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 5, 165 + i * 20,
+					   param->stat_colour, "time:");
+		mlx_string_put(param->mlx_ptr, param->win_stat_ptr, 100, 165 + i * 20,
+					   param->stat_colour, str);
+		free(str);
+		i++;
+	}
 }
 
 static	void	print_coord2(t_fra_param *param, int pre)

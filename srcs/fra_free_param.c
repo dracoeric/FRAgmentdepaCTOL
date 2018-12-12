@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:59:21 by erli              #+#    #+#             */
-/*   Updated: 2018/12/11 15:47:04 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/12 09:15:14 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		fra_free_param(t_fra_param **param, int cas, int setting)
 		free((*param)->pointer);
 	if (setting / 1000 == 1)
 		free((*param)->grad);
+	if (setting / 10000 == 1)
+		free((*param)->thread_time);
 	free(*param);
 	*param = 0;
 	if (cas == -1)

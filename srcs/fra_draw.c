@@ -6,24 +6,31 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 15:20:25 by erli              #+#    #+#             */
-/*   Updated: 2018/12/11 16:50:02 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/12 09:25:21 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
+#include <time.h>
 
 static	void	*draw(void *arg)
 {
 	int			x;
 	int			y;
+	int			x0;
 	t_fra_param	*param;
+	double		t;
 
 	param = (t_fra_param *)arg;
 	y = 0;
+	x0 = 0;
+	t = clock();
+	while (pthread_self() != (param->thread0)[x0])
+		x0++;
 	while ((y < IMG_HEIGHT))
 	{
-		x = param->n_thread;
+		x = x0;
 		while (x < IMG_WIDTH)
 		{
 			mlx_pixel_put_img(param->img, x, y,
@@ -32,6 +39,7 @@ static	void	*draw(void *arg)
 		}
 		y++;
 	}
+	(param->thread_time)[x0] = (double)(clock() - t)/CLOCKS_PER_SEC;
 	return (0);
 }
 
@@ -42,10 +50,9 @@ void			fra_draw(t_fra_param *param)
 
 	i = 0;
 	param->count = 0;
-	ft_bzero(param->img->str, param->img->size_line * param->img->nb_line);
+	param->thread0 = thread;
 	while (i < NUM_MAX_THREAD)
 	{
-		param->n_thread = i;
 		pthread_create(&thread[i], NULL, draw, param);		
 		i++;
 	}
@@ -55,5 +62,6 @@ void			fra_draw(t_fra_param *param)
 		pthread_join(thread[i], NULL);
 		i++;
 	}
+	param->thread0 = NULL;
 	mlx_put_image_to_window(param->mlx_ptr, param->win_ptr, param->img->ptr, 0, 0);
 }

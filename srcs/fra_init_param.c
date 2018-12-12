@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:40:48 by erli              #+#    #+#             */
-/*   Updated: 2018/12/11 16:52:01 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/12 09:14:54 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 static	int		fra_init_3(t_fra_param *param)
 {
 	param->count = 0;
-	param->n_thread = 0;
+	if (!(param->thread_time = (double *)malloc(sizeof(double) * NUM_MAX_THREAD)))
+		return (fra_free_param(&param, -1, 1112));
 	fra_draw(param);
 	return (0);	
 }
