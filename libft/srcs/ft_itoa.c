@@ -6,7 +6,7 @@
 /*   By: erli <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 14:19:28 by erli              #+#    #+#             */
-/*   Updated: 2018/11/09 12:00:56 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/12 13:59:52 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,25 @@
 
 static	int		max_power(int nb, int *pow)
 {
-	int n_pow;
+	int len;
 
-	n_pow = 0;
+	len = 1;
 	if (nb < 0)
+	{
 		*pow = -1;
+		len++;
+	}
 	if (nb == -2147483648)
 	{
 		*pow *= 10;
-		n_pow++;
+		len++;
 	}
 	while (nb / *pow >= 10)
 	{
 		*pow *= 10;
-		n_pow++;
+		len++;
 	}
-	return (n_pow);
+	return (len);
 }
 
 char			*ft_itoa(int nb)
@@ -41,7 +44,7 @@ char			*ft_itoa(int nb)
 
 	pow = 1;
 	i = 0;
-	if (!(str = (char *)malloc(sizeof(char) * (max_power(nb, &pow) + 2))))
+	if (!(str = (char *)malloc(sizeof(char) * (max_power(nb, &pow) + 1))))
 		return (NULL);
 	if (nb < 0)
 	{

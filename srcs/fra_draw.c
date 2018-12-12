@@ -6,15 +6,16 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 15:20:25 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 09:25:21 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/12 14:07:44 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
 #include <time.h>
+#include <stdlib.h>
 
-static	void	*draw(void *arg)
+static	void	draw(void *arg)
 {
 	int			x;
 	int			y;
@@ -25,22 +26,21 @@ static	void	*draw(void *arg)
 	param = (t_fra_param *)arg;
 	y = 0;
 	x0 = 0;
-	t = clock();
 	while (pthread_self() != (param->thread0)[x0])
 		x0++;
+	t = clock();
 	while ((y < IMG_HEIGHT))
 	{
 		x = x0;
 		while (x < IMG_WIDTH)
 		{
-			mlx_pixel_put_img(param->img, x, y,
+			fra_pixel_put_img(param->img, x, y,
 				param->cg(param, fra_iter_julia(param, x, y)));
 			x += NUM_MAX_THREAD;
 		}
 		y++;
 	}
 	(param->thread_time)[x0] = (double)(clock() - t)/CLOCKS_PER_SEC;
-	return (0);
 }
 
 void			fra_draw(t_fra_param *param)
@@ -53,13 +53,15 @@ void			fra_draw(t_fra_param *param)
 	param->thread0 = thread;
 	while (i < NUM_MAX_THREAD)
 	{
-		pthread_create(&thread[i], NULL, draw, param);		
+		if (pthread_create(&thread[i], NULL, (void *)draw, param) == -1)
+			return ;
 		i++;
 	}
 	i = 0;
 	while (i < NUM_MAX_THREAD)
 	{
-		pthread_join(thread[i], NULL);
+		if (pthread_join(thread[i], NULL) != 0)
+			return ;
 		i++;
 	}
 	param->thread0 = NULL;

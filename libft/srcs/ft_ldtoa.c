@@ -6,7 +6,7 @@
 /*   By: erli <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 14:19:28 by erli              #+#    #+#             */
-/*   Updated: 2018/12/10 14:20:25 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/12 13:58:05 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static	int		max_power(long double nb, long double *pow, int precision)
 {
 	int len;
 
-	len = 0;
+	len = 1;
 	if (nb < 0)
 	{
 		*pow = -1;

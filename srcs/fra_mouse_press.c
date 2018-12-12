@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:37:25 by erli              #+#    #+#             */
-/*   Updated: 2018/12/11 16:05:11 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/12 13:42:03 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static	void	manage_zoom(int button, int x, int y, t_fra_param *para)
 		para->qy *= ZOOM_INCR;
 		if (para->zoom <= 1)
 		{
-			para->qx = (long double)DEFAULT_X_AMPLITUDE
-				/ (long double)IMG_HEIGHT;
-			para->qy = (long double)DEFAULT_X_AMPLITUDE;
+			para->qx = (double)DEFAULT_X_AMPLITUDE
+				/ (double)IMG_HEIGHT;
+			para->qy = (double)DEFAULT_X_AMPLITUDE;
 			para->zoom = 1;
 			para->o_re = 0;
 			para->o_im = 0;
@@ -44,16 +44,17 @@ static	void	manage_zoom(int button, int x, int y, t_fra_param *para)
 
 static	void	manage_iter(int button, int x, int y, t_fra_param *param)
 {
-	ft_printf("Button %d pressed at (%d, %d).\n", button, x, y);
+	x = 1;
+	y = 1;
 	if (button == 4 && param->key_pressed == 1)
 	{
-		param->num_max_iter += 2;
+		param->num_max_iter += 20;
 		fra_draw(param);
 	}
 	if (button == 5 && param->key_pressed == 1)
 	{
 		if (param->num_max_iter > DEFAULT_NUM_MAX_ITER)
-			param->num_max_iter -= 2;
+			param->num_max_iter -= 20;
 		else
 			param ->num_max_iter = DEFAULT_NUM_MAX_ITER;
 	}
@@ -63,15 +64,15 @@ int				fra_mouse_press(int button, int x, int y, void *param)
 {
 	t_fra_param *para;
 
-	if (param == 0)
-		return (0);
-	para = (t_fra_param *)param;
-	ft_printf("Button %d pressed at z = %Lf +i %LF.\n", button,
-		fra_pix_to_re(para, x), fra_pix_to_im(para, y));
-	manage_zoom(button, x, y, para);
-	manage_iter(button, x, y, para);
 	if (button == 4 || button == 5)
+	{
+		if (param == 0)
+			return (0);
+		para = (t_fra_param *)param;
+		manage_zoom(button, x, y, para);
+		manage_iter(button, x, y, para);
 		fra_draw(para);
-	fra_print_stat(para);
+		fra_print_stat(para);
+	}
 	return (0);
 }
