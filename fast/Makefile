@@ -6,15 +6,15 @@
 #    By: erli <erli@42.fr>                          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/30 10:43:47 by erli              #+#    #+#              #
-#    Updated: 2018/12/12 16:25:46 by erli             ###   ########.fr        #
+#    Updated: 2018/12/12 16:26:04 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME			=	fractol
+NAME			=	../fractol
 
-SRCSDIR			=	srcs
+SRCSDIR			=	../srcs
 
-OBJSDIR			=	objs
+OBJSDIR			=	.
 
 SRCS			=	mlx_line_put.c		mlx_str_to_colour.c							\
 					mlx_line_put_img.c	mlx_pixel_put_img.c	mlx_img_create.c		\
@@ -36,41 +36,31 @@ CFLAGS			=	-Wall -Werror -Wextra
 
 RM				=	rm -f
 
-INCL			=	-I includes/ -I libft/includes -I minilibx_macos/
+INCL			=	-I ../includes/ -I ../libft/includes -I ../minilibx_macos/
 
-LIB				=	-Lminilibx_macos/ -lmlx -Llibft/ -lft -lpthread
+LIB				=	-L../minilibx_macos/ -lmlx -L../libft/ -lft -lpthread
 
 FRAMEWORK		=	-framework OpenGL -framework AppKit
 
-LIBFT			=	libft/libft.a
+LIBFT			=	../libft/libft.a
 
-LIBMLX			=	minilibx_macos/libmlx.a
+LIBMLX			=	../minilibx_macos/libmlx.a
 
 
 all				:	$(NAME)
 
-$(NAME)			:	$(LIBFT) $(LIBMLX) $(OBJS) includes/fractol.h includes/mlxadd.h
-					$(CC) $(CFLAGS) $(INCL) $(LIB) -o $(NAME) $(OBJS) $(FRAMEWORK)
+$(NAME)			:	$(LIBFT) $(LIBMLX) $(OBJS) ../includes/fractol.h ../includes/mlxadd.h
+					$(CC) $(CFLAGS) $(INCL) $(LIB) -o $(NAME) $(OBJS) $(FRAMEWORK) -Ofast
 
-$(OBJSDIR)/%.o	:	$(SRCSDIR)/%.c includes/fractol.h includes/mlxadd.h
+$(OBJSDIR)/%.o	:	$(SRCSDIR)/%.c ../includes/fractol.h ../includes/mlxadd.h
 					@mkdir -p $(OBJSDIR)
-					$(CC) -c $(CFLAGS) $(INCL) -o $@ $<
+					$(CC) -c $(CFLAGS) $(INCL) -o $@ $< -Ofast
 
 $(LIBFT)		:	
-					make -C libft/ && make -C libft/ clean
+					make -C ../libft/ && make -C ../libft/ clean
 
 $(LIBMLX)		:
-					make -C minilibx_macos
-
-val				:	$(LIBFT) $(LIBMLX) $(OBJS) includes/fractol.h includes/mlxadd.h
-					$(CC) -g $(CFLAGS) $(INCL) $(LIB) -o $(NAME) $(OBJS) $(FRAMEWORK)
-
-fast			:	
-					make -C fast
-
-sanit			:	$(LIBFT) $(LIBMLX) $(OBJS) includes/fractol.h includes/mlxadd.h
-					$(CC) $(CFLAGS) $(INCL) $(LIB) -o $(NAME) $(OBJS) $(FRAMEWORK) \
-					-g -fsanitize=address
+					make -C ../minilibx_macos
 
 clean			:
 					$(RM) $(OBJS)
@@ -86,4 +76,4 @@ delsav			:
 					$(RM) \#*
 					$(RM) */\#*
 
-.PHONY			:	clean val fast
+.PHONY			:	clean val $(NAME)

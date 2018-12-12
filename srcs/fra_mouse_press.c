@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:37:25 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 14:20:56 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/12 16:27:29 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ static	void	manage_iter(int button, int x, int y, t_fra_param *param)
 	y = 1;
 	if (button == 4 && param->key_pressed == 1)
 	{
-		param->num_max_iter += 20;
+		param->num_max_iter += 5;
 		fra_draw(param);
 	}
 	if (button == 5 && param->key_pressed == 1)
 	{
 		if (param->num_max_iter > DEFAULT_NUM_MAX_ITER)
-			param->num_max_iter -= 20;
+			param->num_max_iter -= 5;
 		else
 			param->num_max_iter = DEFAULT_NUM_MAX_ITER;
 	}
