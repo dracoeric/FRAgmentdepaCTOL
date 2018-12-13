@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 11:44:00 by erli              #+#    #+#             */
-/*   Updated: 2018/12/13 12:50:59 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/13 14:26:23 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,12 @@ static	int		key_press2(int key, t_fra_param *param)
 		param->o_im = fra_pix_to_im(param, IMG_HEIGHT * 2 / 3);
 	if (key == 2)
 		param->o_re = fra_pix_to_re(param, IMG_HEIGHT * 2 / 3);
-	if (key == 0 || key == 1 || key == 2 || key == 13)
+	if (key == 31)
+		param->grad = fra_change_grad(param->grad, 0);
+	if (key == 35)
+		param->grad = fra_change_grad(param->grad, 1);
+	if (key == 0 || key == 1 || key == 2 || key == 13 || key == 31
+		|| key == 35)
 	{
 		fra_draw(param);
 		fra_print_stat(param);

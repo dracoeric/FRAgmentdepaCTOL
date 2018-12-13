@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 09:53:53 by erli              #+#    #+#             */
-/*   Updated: 2018/12/13 12:51:24 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/13 14:25:31 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "mlxadd.h"
 # include <pthread.h>
 
-# define IMG_WIDTH 1080
-# define IMG_HEIGHT 720
+# define IMG_WIDTH 512
+# define IMG_HEIGHT 512
 # define WIN_STAT_WIDTH 300
 # define WIN_STAT_HEIGHT 720
 # define WIN_STAT_TEXT_COLOUR "0x00ffffff"
@@ -85,6 +85,7 @@ enum e_fra_type	fra_type(char *str);
 double			fra_pix_to_re(t_fra_param *param, int px);
 double			fra_pix_to_im(t_fra_param *param, int py);
 t_colour		*fra_make_grad_1(void);
+t_colour		*fra_change_grad(t_colour *grad, int n);
 t_colour		fra_cg_bw(t_fra_param *param, int n);
 t_colour		fra_cg_grad(t_fra_param *param, int n);
 void			fra_pixel_put_img(t_img *img, int x, int y, t_colour colour);

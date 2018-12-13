@@ -6,7 +6,7 @@
 #    By: erli <erli@42.fr>                          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/30 10:43:47 by erli              #+#    #+#              #
-#    Updated: 2018/12/12 16:26:04 by erli             ###   ########.fr        #
+#    Updated: 2018/12/13 14:24:17 by erli             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -26,7 +26,9 @@ SRCS			=	mlx_line_put.c		mlx_str_to_colour.c							\
 					fra_pix_to_re.c		fra_pix_to_im.c		fra_iter_julia.c		\
 					fra_cg_bw.c			fra_cg_grad.c		fra_draw.c				\
 					fra_make_grad_1.c	fra_pixel_put_img.c	fra_key_close.c			\
-					fra_iter_mandelbrot.c					main.c				
+					fra_iter_mandelbrot.c					fra_iter_mandeldrop.c	\
+					fra_iter_mandel2brot.c					fra_iter_burning_ship.c	\
+					fra_change_grad.c						main.c				
 
 OBJS			=	$(addprefix $(OBJSDIR)/,$(SRCS:.c=.o))
 
