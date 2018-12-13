@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 09:53:53 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 16:06:33 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/13 12:51:24 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,32 @@
 # include "mlxadd.h"
 # include <pthread.h>
 
-# define IMG_WIDTH 512
-# define IMG_HEIGHT 512
+# define IMG_WIDTH 1080
+# define IMG_HEIGHT 720
 # define WIN_STAT_WIDTH 300
 # define WIN_STAT_HEIGHT 720
 # define WIN_STAT_TEXT_COLOUR "0x00ffffff"
 # define DEFAULT_NUM_MAX_ITER 50
 # define DEFAULT_X_AMPLITUDE 3
 # define MAX_ZOOM 200000000000000
-# define ZOOM_INCR 1.3
+# define ZOOM_INCR 1.2
 # define NUM_MAX_THREAD 4
 
 enum	e_fra_type
 {
 	JULIA = 1,
 	MANDELBROT = 2,
-	NOT_SUPPORTED = 4
+	MANDELDROP = 3,
+	MANDEL2BROT = 4,
+	BURNING = 5,
+	NOT_SUPPORTED = 6
 };
+
+typedef	struct	s_fra_list
+{
+	t_pixcoord			*pix;
+	struct s_fra_list	*next;
+}				t_fra_list;
 
 typedef	struct	s_fra_param
 {
@@ -81,6 +90,9 @@ t_colour		fra_cg_grad(t_fra_param *param, int n);
 void			fra_pixel_put_img(t_img *img, int x, int y, t_colour colour);
 int				fra_iter_julia(t_fra_param *param, int x, int y);
 int				fra_iter_mandelbrot(t_fra_param *param, int x, int y);
+int				fra_iter_mandel2brot(t_fra_param *param, int x, int y);
+int				fra_iter_burning_ship(t_fra_param *param, int x, int y);
+int				fra_iter_mandeldrop(t_fra_param *param, int x, int y);
 void			fra_draw(t_fra_param *param);
 
 #endif

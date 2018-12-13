@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 11:44:00 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 16:07:16 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/13 12:50:59 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,11 @@ static	int		reset(int key, t_fra_param *param)
 		param->qx = (double)DEFAULT_X_AMPLITUDE / (double)IMG_HEIGHT;
 		param->qy = (double)DEFAULT_X_AMPLITUDE;
 		param->zoom = 1;
-		param->o_re = 0;
-		param->o_im = 0;
+		if (param->type != MANDELDROP)
+		{
+			param->o_re = 0;
+			param->o_im = 0;
+		}
 		param->c_re = 0.3;
 		param->c_im = 0.5;
 		param->num_max_iter = DEFAULT_NUM_MAX_ITER;
@@ -94,17 +97,20 @@ static	int		key_fra(int key, t_fra_param *param)
 		param->type = MANDELBROT;
 		param->iter = &fra_iter_mandelbrot;
 	}
-	if (key == 18 || key == 19)
+	if (key == 20)
 	{
-		param->qx = (double)DEFAULT_X_AMPLITUDE / (double)IMG_HEIGHT;
-		param->qy = (double)DEFAULT_X_AMPLITUDE;
-		param->zoom = 1;
-		param->o_re = 0;
+		param->type = MANDELDROP;
+		param->iter = &fra_iter_mandeldrop;
+		param->o_re = 1.4;
 		param->o_im = 0;
-		param->num_max_iter = DEFAULT_NUM_MAX_ITER;
-		fra_draw(param);
-		fra_print_stat(param);
 	}
+	if (key == 21)
+	{
+		param->type = MANDEL2BROT;
+		param->iter = &fra_iter_mandel2brot;
+	}
+	if (key == 18 || key == 19 || key == 20 || key == 21)
+		reset(15, param);
 	return (0);
 }
 
@@ -119,6 +125,12 @@ int				fra_key_press(int key, void *arg)
 	{
 		fra_free_param(&param, 0, 11112);
 		exit(0);
+	}
+	if (key == 23)
+	{
+		param->type = BURNING;
+		param->iter = &fra_iter_burning_ship;
+		reset(15, param);
 	}
 	key_fra(key, param);
 	key_press2(key, param);

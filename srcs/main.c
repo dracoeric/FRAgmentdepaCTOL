@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 09:54:31 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 14:40:48 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/13 12:47:23 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			main(int argc, char **argv)
 
 	if (argc != 2)
 		ft_msg_int(0, "Missing argument\nUse 'Julia' or 'Mandelbrot'\n", 0);
-	else if (fra_type(argv[1]) < 4)
+	else if (fra_type(argv[1]) < 6)
 	{
 		if (!(param = fra_init_param(fra_type(argv[1]))))
 			return (ft_msg_int(2, "Memory allocation error.\n", 0));

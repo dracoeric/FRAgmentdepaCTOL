@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:40:48 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 15:10:12 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/13 12:45:49 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ static	int		fra_init_3(t_fra_param *param)
 		param->iter = &fra_iter_julia;
 	else if (param->type == MANDELBROT)
 		param->iter = &fra_iter_mandelbrot;
+	else if (param->type == MANDEL2BROT)
+		param->iter = &fra_iter_mandel2brot;
+	else if (param->type == BURNING)
+		param->iter = &fra_iter_burning_ship;
+	else if (param->type == MANDELDROP)
+	{
+		param->iter = &fra_iter_mandeldrop;
+		param->o_re = 1.4;
+		param->o_im = 0.0;
+	}
 	if (!(param->thread_time = (double *)malloc(sizeof(double)
 		* NUM_MAX_THREAD)))
 		return (fra_free_param(&param, -1, 1112));

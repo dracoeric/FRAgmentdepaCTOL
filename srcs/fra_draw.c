@@ -6,41 +6,49 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 15:20:25 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 15:06:31 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/12 16:57:35 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
-#include <time.h>
+#include <sys/time.h>
 #include <stdlib.h>
 
-static	void	draw(void *arg)
+static	void	draw_loop(t_fra_param *param, int x0)
 {
-	int			x;
-	int			y;
-	int			x0;
-	t_fra_param	*param;
-	double		t;
+	int y;
+	int x;
 
-	param = (t_fra_param *)arg;
 	y = 0;
-	x0 = 0;
-	while (pthread_self() != (param->thread0)[x0])
-		x0++;
-	t = clock();
 	while ((y < IMG_HEIGHT))
 	{
 		x = x0;
 		while (x < IMG_WIDTH)
 		{
-			fra_pixel_put_img(param->img, x, y,
+			mlx_pixel_put_img(param->img, x, y,
 				param->cg(param, param->iter(param, x, y)));
 			x += NUM_MAX_THREAD;
 		}
 		y++;
 	}
-	(param->thread_time)[x0] = (double)(clock() - t) / CLOCKS_PER_SEC;
+}
+
+static	void	draw(void *arg)
+{
+	int				x0;
+	t_fra_param		*param;
+	struct timeval	t[2];
+
+	param = (t_fra_param *)arg;
+	x0 = 0;
+	while (pthread_self() != (param->thread0)[x0])
+		x0++;
+	gettimeofday(t, NULL);
+	draw_loop(param, x0);
+	gettimeofday(t + 1, NULL);
+	(param->thread_time)[x0] = (t[1].tv_sec - t[0].tv_sec) * 1000.0;
+	(param->thread_time)[x0] += (t[1].tv_usec - t[0].tv_usec) / 1000.0;
 }
 
 void			fra_draw(t_fra_param *param)
