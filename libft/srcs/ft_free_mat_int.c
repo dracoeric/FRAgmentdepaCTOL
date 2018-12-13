@@ -6,14 +6,14 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 14:18:11 by erli              #+#    #+#             */
-/*   Updated: 2018/12/02 14:21:55 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/13 17:10:42 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void	ft_free_mat_int(int	**mat, int row)
+void	ft_free_mat_int(int **mat, int row)
 {
 	int i;
 
