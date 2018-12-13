@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 13:25:21 by erli              #+#    #+#             */
-/*   Updated: 2018/12/13 12:45:33 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/13 14:38:51 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ enum	e_fra_type	fra_type(char *str)
 	if (ft_strcmp(ft_str_to_lower(str), "burning") == 0)
 		return (BURNING);
 	ft_msg_int(2, "Invalid argument. Use Julia, Mandelbrot, Mandeldrop,", 0);
-	return (ft_msg_int(2, "Mandel2brot or Burning.\n", -1));
+	return (ft_msg_int(2, " Mandel2brot or Burning.\n", -1));
 }

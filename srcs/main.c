@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 09:54:31 by erli              #+#    #+#             */
-/*   Updated: 2018/12/13 12:47:23 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/13 14:38:30 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int			main(int argc, char **argv)
 	t_fra_param *param;
 
 	if (argc != 2)
-		ft_msg_int(0, "Missing argument\nUse 'Julia' or 'Mandelbrot'\n", 0);
+	{
+		ft_putstr("Invalif number of arguments\nUse Julia, Mandelbrot,");
+		return (ft_msg_int(0, " Mandeldrop, Mandel2brot or Burning\n", 0));
+	}
 	else if (fra_type(argv[1]) < 6)
 	{
 		if (!(param = fra_init_param(fra_type(argv[1]))))
