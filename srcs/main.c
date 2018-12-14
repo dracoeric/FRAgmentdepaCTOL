@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 09:54:31 by erli              #+#    #+#             */
-/*   Updated: 2018/12/13 14:38:30 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/14 10:05:47 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr("Invalif number of arguments\nUse Julia, Mandelbrot,");
+		ft_putstr("Invalid number of arguments\nUse Julia, Mandelbrot,");
 		return (ft_msg_int(0, " Mandeldrop, Mandel2brot or Burning\n", 0));
 	}
 	else if (fra_type(argv[1]) < 6)

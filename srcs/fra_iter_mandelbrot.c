@@ -6,12 +6,11 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 15:07:07 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 15:03:46 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/14 10:13:49 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"
 
 int		fra_iter_mandelbrot(t_fra_param *param, int x, int y)
 {

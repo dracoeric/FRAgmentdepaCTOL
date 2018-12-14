@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 11:44:00 by erli              #+#    #+#             */
-/*   Updated: 2018/12/13 14:26:23 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/14 10:15:33 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ static	void	test_perf(t_fra_param *param)
 	param->o_re = 0.268056857839838391655;
 	param->o_im = -0.126381839666804829391;
 	param->num_max_iter = 410;
-	gettimeofday(&t1, NULL);
+	if (!(gettimeofday(&t1, NULL)))
+		return ;
 	fra_draw(param);
-	gettimeofday(&t2, NULL);
+	if (!(gettimeofday(&t2, NULL)))
+		return ;
 	t = (t2.tv_sec - t1.tv_sec) * 1000.0;
 	t += (t2.tv_usec - t1.tv_usec) / 1000.0;
 	ft_printf("time in ms: %f\n", t);

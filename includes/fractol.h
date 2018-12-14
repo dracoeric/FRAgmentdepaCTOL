@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 09:53:53 by erli              #+#    #+#             */
-/*   Updated: 2018/12/13 14:25:31 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/13 17:52:29 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define DEFAULT_X_AMPLITUDE 3
 # define MAX_ZOOM 200000000000000
 # define ZOOM_INCR 1.2
-# define NUM_MAX_THREAD 4
+# define NUM_MAX_THREAD 5
 
 enum	e_fra_type
 {

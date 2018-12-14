@@ -6,12 +6,13 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 15:20:25 by erli              #+#    #+#             */
-/*   Updated: 2018/12/14 09:21:03 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/14 10:19:51 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <sys/time.h>
+#include "libft.h"
 
 static	void	draw_loop(t_fra_param *param, int x0)
 {
@@ -32,7 +33,7 @@ static	void	draw_loop(t_fra_param *param, int x0)
 	}
 }
 
-static	void	draw(void *arg)
+static	void	*draw(void *arg)
 {
 	int				x0;
 	t_fra_param		*param;
@@ -43,15 +44,16 @@ static	void	draw(void *arg)
 	while (pthread_self() != (param->thread0)[x0])
 		x0++;
 	if (gettimeofday(t, NULL) == -1)
-		return ;
+		return (ft_msg_ptr(2, "gettimeofday error.\n", 0));
 	draw_loop(param, x0);
 	if (gettimeofday(t + 1, NULL) == -1)
-		return ;
+		return (ft_msg_ptr(2, "gettimeofday error.\n", 0));
 	if (x0 >= 0 && x0 < NUM_MAX_THREAD)
 	{
 		(param->thread_time)[x0] = (t[1].tv_sec - t[0].tv_sec) * 1000.0;
 		(param->thread_time)[x0] += (t[1].tv_usec - t[0].tv_usec) / 1000.0;
 	}
+	return (0);
 }
 
 void			fra_draw(t_fra_param *param)
@@ -64,7 +66,7 @@ void			fra_draw(t_fra_param *param)
 	param->thread0 = thread;
 	while (i < NUM_MAX_THREAD)
 	{
-		if (pthread_create(&thread[i], NULL, (void *)draw, param) == -1)
+		if (pthread_create(&thread[i], NULL, draw, param) == -1)
 			return ;
 		i++;
 	}
