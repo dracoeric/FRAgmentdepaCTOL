@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 15:20:25 by erli              #+#    #+#             */
-/*   Updated: 2018/12/14 10:19:51 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/14 10:26:55 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static	void	*draw(void *arg)
 	while (pthread_self() != (param->thread0)[x0])
 		x0++;
 	if (gettimeofday(t, NULL) == -1)
-		return (ft_msg_ptr(2, "gettimeofday error.\n", 0));
+		return (ft_msg_ptr(0, "gettimeofday error.\n", 0));
 	draw_loop(param, x0);
 	if (gettimeofday(t + 1, NULL) == -1)
-		return (ft_msg_ptr(2, "gettimeofday error.\n", 0));
+		return (ft_msg_ptr(0, "gettimeofday error.\n", 0));
 	if (x0 >= 0 && x0 < NUM_MAX_THREAD)
 	{
 		(param->thread_time)[x0] = (t[1].tv_sec - t[0].tv_sec) * 1000.0;
