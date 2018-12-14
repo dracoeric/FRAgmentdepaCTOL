@@ -6,12 +6,11 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:31:17 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 14:51:19 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/14 09:27:22 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"
 
 int		fra_mouse_move(int x, int y, void *param)
 {
@@ -22,7 +21,7 @@ int		fra_mouse_move(int x, int y, void *param)
 	para = (t_fra_param *)param;
 	para->pointer->px = x;
 	para->pointer->py = y;
-	if (para->type == 1 && para->key_pressed2 == 1 && para->zoom == 1)
+	if (para->type == JULIA && para->key_pressed2 == 1 && para->zoom == 1)
 	{
 		if (x > 2 || x < -2)
 			para->c_re = fra_pix_to_re(param, x);

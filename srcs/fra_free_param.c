@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:59:21 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 10:29:41 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/14 09:15:19 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int		fra_free_param(t_fra_param **param, int cas, int setting)
 	if (setting / 10000 == 1)
 		free((*param)->thread_time);
 	free(*param);
-	*param = 0;
 	if (cas == -1)
 		return (ft_msg_int(2, "Data freeing cause by malloc error.\n",
 			-1));

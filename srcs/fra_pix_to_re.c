@@ -6,12 +6,11 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 16:52:15 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 14:20:22 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/14 09:33:17 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"
 
 double			fra_pix_to_re(t_fra_param *param, int px)
 {

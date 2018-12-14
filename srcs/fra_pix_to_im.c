@@ -6,12 +6,11 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 16:52:15 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 09:42:22 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/14 09:33:21 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"
 
 double		fra_pix_to_im(t_fra_param *param, int py)
 {

@@ -6,12 +6,11 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 15:07:07 by erli              #+#    #+#             */
-/*   Updated: 2018/12/13 10:21:44 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/14 09:24:59 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"
 
 int		fra_iter_burning_ship(t_fra_param *param, int x, int y)
 {

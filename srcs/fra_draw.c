@@ -6,14 +6,12 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 15:20:25 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 16:57:35 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/14 09:21:03 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"
 #include <sys/time.h>
-#include <stdlib.h>
 
 static	void	draw_loop(t_fra_param *param, int x0)
 {
@@ -44,11 +42,16 @@ static	void	draw(void *arg)
 	x0 = 0;
 	while (pthread_self() != (param->thread0)[x0])
 		x0++;
-	gettimeofday(t, NULL);
+	if (gettimeofday(t, NULL) == -1)
+		return ;
 	draw_loop(param, x0);
-	gettimeofday(t + 1, NULL);
-	(param->thread_time)[x0] = (t[1].tv_sec - t[0].tv_sec) * 1000.0;
-	(param->thread_time)[x0] += (t[1].tv_usec - t[0].tv_usec) / 1000.0;
+	if (gettimeofday(t + 1, NULL) == -1)
+		return ;
+	if (x0 >= 0 && x0 < NUM_MAX_THREAD)
+	{
+		(param->thread_time)[x0] = (t[1].tv_sec - t[0].tv_sec) * 1000.0;
+		(param->thread_time)[x0] += (t[1].tv_usec - t[0].tv_usec) / 1000.0;
+	}
 }
 
 void			fra_draw(t_fra_param *param)

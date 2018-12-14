@@ -6,13 +6,11 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 09:40:20 by erli              #+#    #+#             */
-/*   Updated: 2018/12/13 14:23:50 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/14 09:12:40 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdlib.h>
-#include "libft.h"
 
 static	t_colour	*grad_1(t_colour *grad)
 {

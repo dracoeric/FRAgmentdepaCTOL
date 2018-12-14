@@ -6,12 +6,11 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:37:25 by erli              #+#    #+#             */
-/*   Updated: 2018/12/12 16:27:29 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/14 09:28:25 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"
 
 static	void	manage_zoom(int button, int x, int y, t_fra_param *para)
 {
@@ -42,10 +41,8 @@ static	void	manage_zoom(int button, int x, int y, t_fra_param *para)
 	}
 }
 
-static	void	manage_iter(int button, int x, int y, t_fra_param *param)
+static	void	manage_iter(int button, t_fra_param *param)
 {
-	x = 1;
-	y = 1;
 	if (button == 4 && param->key_pressed == 1)
 	{
 		param->num_max_iter += 5;
@@ -70,7 +67,7 @@ int				fra_mouse_press(int button, int x, int y, void *param)
 			return (0);
 		para = (t_fra_param *)param;
 		manage_zoom(button, x, y, para);
-		manage_iter(button, x, y, para);
+		manage_iter(button, para);
 		fra_draw(para);
 		fra_print_stat(para);
 	}
