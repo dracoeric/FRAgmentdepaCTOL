@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 11:44:00 by erli              #+#    #+#             */
-/*   Updated: 2018/12/14 10:26:38 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/14 10:28:09 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static	int		test_perf(t_fra_param *param)
 	t = (t2.tv_sec - t1.tv_sec) * 1000.0;
 	t += (t2.tv_usec - t1.tv_usec) / 1000.0;
 	ft_printf("time in ms: %f\n", t);
+	return (0);
 }
 
 static	int		key_press2(int key, t_fra_param *param)
