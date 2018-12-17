@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 15:07:07 by erli              #+#    #+#             */
-/*   Updated: 2018/12/14 09:25:49 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/17 16:12:54 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int		fra_iter_julia(t_fra_param *param, int x, int y)
 	double	im2;
 	int		i;
 
+	if (param == 0)
+		return (0);
 	i = 0;
 	im = fra_pix_to_im(param, y);
 	re = fra_pix_to_re(param, x);

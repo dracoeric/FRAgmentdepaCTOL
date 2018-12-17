@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 15:20:25 by erli              #+#    #+#             */
-/*   Updated: 2018/12/14 10:26:55 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/17 16:11:35 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void			fra_draw(t_fra_param *param)
 	pthread_t	thread[NUM_MAX_THREAD];
 	int			i;
 
+	if (param == 0)
+		return ;
 	i = 0;
 	param->count = 0;
 	param->thread0 = thread;
