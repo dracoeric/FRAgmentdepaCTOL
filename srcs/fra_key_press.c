@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 11:44:00 by erli              #+#    #+#             */
-/*   Updated: 2018/12/14 10:28:09 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/17 15:56:48 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ int				fra_key_press(int key, void *arg)
 {
 	t_fra_param *param;
 
+	if (arg == 0)
+		return (0);
 	param = (t_fra_param *)arg;
 	if (key == 256)
 		param->key_pressed = 1;
