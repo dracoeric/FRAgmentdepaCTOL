@@ -6,7 +6,7 @@
 /*   By: erli <erli@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 12:40:48 by erli              #+#    #+#             */
-/*   Updated: 2018/12/14 10:13:30 by erli             ###   ########.fr       */
+/*   Updated: 2018/12/18 16:15:17 by erli             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static	int		fra_init_3(t_fra_param *param)
 {
 	param->count = 0;
 	param->key_pressed2 = 0;
+	param->mutex = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
 	if (param->type == JULIA)
 		param->iter = &fra_iter_julia;
 	else if (param->type == MANDELBROT)
